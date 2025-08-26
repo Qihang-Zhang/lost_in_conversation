@@ -1,0 +1,18 @@
+[project]
+name = "lost-in-conversation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "gitpython>=3.1.45",
+    "nltk>=3.9.1",
+    "numpy>=2.3.2",
+    "pandas>=2.3.2",
+    "pymongo>=4.14.1",
+    "sacrebleu>=2.5.1",
+    "sqlparse>=0.5.3",
+    "streamlit>=1.48.1",
+    "tiktoken>=0.11.0",
+    "tqdm>=4.67.1",
+]
