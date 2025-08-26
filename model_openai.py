@@ -1,4 +1,4 @@
-from openai import OpenAI, AzureOpenAI
+from openai import OpenAI, AzureOpenAI, Client
 import os, time, json, re
 
 def format_messages(messages, variables={}):
@@ -22,9 +22,10 @@ class OpenAI_Model:
     def __init__(self):
         if "AZURE_OPENAI_API_KEY" in os.environ and "AZURE_OPENAI_ENDPOINT" in os.environ:
             self.client = AzureOpenAI(api_key=os.environ["AZURE_OPENAI_API_KEY"], azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"], api_version="2024-10-01-preview")
-        else:
-            assert "OPENAI_API_KEY" in os.environ
+        elif "OPENAI_API_KEY" in os.environ:
             self.client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        else:
+            self.client = Client(base_url=f"http://127.0.0.1:{port}/v1", api_key="None")
 
     def cost_calculator(self, model, usage, is_batch_model=False):
         is_finetuned, base_model = False, model
